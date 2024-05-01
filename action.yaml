@@ -6,12 +6,17 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  what-to-say:
+    description: 'What to say'
+    required: true
+    default: 'Hello'
 
 runs:
   using: "composite"
   steps:
     - name: Set Greeting
-      run: echo "Hello ${INPUT_WHO_TO_GREET}!"
+      run: echo "${WHAT_TO_SAY} ${INPUT_WHO_TO_GREET}!"
       shell: bash
       env:
         INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+        WHAT_TO_SAY: ${{ inputs.what-to-say }}
