@@ -1,0 +1,23 @@
+---
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set env
+        id: set
+        run: |
+          echo "FILES=['action.yaml', 'README.md']" > $GITHUB_OUTPUT
+      - name: Print env
+        run: echo $FILES1
+
+      - name: Print JSON array as enter split string
+        env:
+          FILES: ${{ fromJSON(steps.set.outputs.FILES) }}
+        run: |
+          echo $FILES
+          echo boo
